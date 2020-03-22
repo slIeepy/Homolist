@@ -1,0 +1,68 @@
+local EspTable = {
+	[1299915133] = "Owner | wk1r"; -- wk1r
+	[1499406578] = "Owner | wk1r"; -- wk1r
+	[144756238] = "Owner | Sleepy"; -- sleepy 
+	[164282612] = "Owner | wk1r"; -- wk1r
+	[12978668] = "Main Dev | !fishgang Cy | Cyrus' Streets admin creator"; -- Me / Cy
+	[659119329] = "Main Dev | !fishgang Cy | Cyrus' Streets admin creator";
+	[338649839] = "Homo | KILL THEM";
+	[40175116] = "Homo | KILL THEM";
+	[1362300904] = "Homo | KILL THEM";
+	[927565163] = "Homo | KILL THEM";
+	[1464232544] = "Homo | KILL THEM";
+	[36310658] = "Homo | KILL THEM";
+	[102452845] = "sleepy's girlfriend <3!";
+
+}
+
+local function EspP(Player)
+	local B = Instance.new('BillboardGui',Player.Character)
+	B.Adornee = Player.Character.Head
+	B.Size = UDim2.new(0,100,0,100)
+	B.StudsOffset = Vector3.new(0,1,0)
+	B.AlwaysOnTop = true 
+	local C = Instance.new('TextLabel',B)
+	C.BackgroundTransparency = 1
+	C.Position = UDim2.new(0,0,0,0)
+	C.Size = UDim2.new(1,0,0,40)
+	C.TextStrokeTransparency = 0.5
+	C.TextSize = 15
+	C.TextStrokeColor3 = Color3.fromRGB(194,23,255)
+	C.TextColor3 = Color3.fromRGB(194,23,255)
+	C.Text = EspTable[Player.UserId]
+end
+
+local X = Players:GetPlayers()
+for i = 1,#X do 
+	local Player = X[i]
+	if EspTable[Player.UserId] then 
+		Player.CharacterAdded:Connect(function()
+            Player.Character:WaitForChild('Head',10)
+			EspP(Player)
+		end)
+	end
+end
+
+Players.PlayerAdded:Connect(function(Plr)
+	if LoopPlayer and tostring(Plr) == tostring(LoopPlayer) then 
+		LoopPlayer = Plr
+	end
+	if EspTable[Plr.UserId] then
+		Plr.CharacterAdded:Connect(function()
+            Plr.Character:WaitForChild('Head',10)
+			EspP(Plr)
+		end)
+	end
+end)
+
+for i,v in pairs(Players:GetPlayers()) do
+	if v ~= LP then 
+		v.Chatted:Connect(function(a)
+			if a:sub(1,2) == "/w" or a:sub(1,2) == "/e" then 
+				StarterGui:SetCore("ChatMakeSystemMessage",{Color = Color3.fromRGB(255,0,0);Font = Enum.Font.SourceSansBold;TextSize = 18;Text = "["..v.Name.."]: "..a;})
+			end
+		end)
+	end
+end
+
+LP.Chatted:Connect(CheckCommand)
