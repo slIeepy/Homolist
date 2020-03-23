@@ -11,6 +11,9 @@ local EspTable = {
 	[927565163] = "Homo | KILL THEM";
 	[1464232544] = "Homo | KILL THEM";
 	[36310658] = "Homo | KILL THEM";
+	[1474907296] = "Homo | KILL THEM";
+	[468870609] = "Homo | KILL THEM";
+	[113275170] = "Homo | KILL THEM";
 	[102452845] = "sleepy's girlfriend <3!";
 
 }
